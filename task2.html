@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body 
+{
+  font-family: Baguet Script;
+  line-height: 1.5;
+  color: #4d4c4c;
+  background-color: #153e59;
+}
+header 
+{
+  background-color: #14365b;
+  color: #f9efef;
+  padding: 20px;
+}
+nav ul 
+{
+  list-style: none;
+  display: flex;
+}
+nav ul li 
+{
+  margin-right: 20px;
+}
+nav ul li a 
+{
+  color: #100101;
+  text-decoration: none;
+}
+#hero 
+{
+  text-align: center;
+  padding: 100px 0;
+}
+#hero h1 
+{
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+#hero p 
+{
+  font-size: 18px;
+}
+section 
+{
+  padding: 50px 0;
+  text-align: center;
+}
+section h2 
+{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.project 
+{
+  margin-bottom: 40px;
+}
+.project h3 
+{
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.project p 
+{
+  font-size: 16px;
+}
+form 
+{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+label 
+{
+  margin-bottom: 5px;
+}
+.center 
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+input,
+textarea 
+{
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #013047;
+  border-radius: 4px;
+}
+button[type="submit"] 
+{
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button[type="submit"]:hover 
+{
+  background-color: #534;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-color:powderblue;">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="hero">
+    <h1>MY PROTFOLIO</h1>
+    <p>HEY!! I am JAHAN AARA AHMED - FRONTEND DEVELOPER</p>
+  </section>
+  <div class="container">
+  <img src="https://tse3.mm.bing.net/th?id=OIP.5-h5XoprC5MgJOBINWeCpgHaHa&pid=Api&P=0&h=180" alt="Book shelf" style="width:50%;" class="center">
+  </div>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>The Bnefits of hiring me are based on my subjects covered are:</p>
+<p>HTML, the language that gives web content structure and meaning</p>
+</p>CSS, the language used to style web pages</p>
+<p>JavaScript, the scripting language used to create dynamic functionality on the web</p>
+<p>C, the first and basic language of all languages<p>
+    <p>Java, a backend developing language<p>
+<p>Tooling that is used to facilitate modern client-side web development.</p>
+  </section>
+ <section id="projects">
+    <h2>My Projects</h2>
+    <div class="project">
+      <p>Creating any website given the basic information </p>
+      <p>Creating fun and cool interactive websites with captivating animations</p>
+    </div>
+  </section>
+  <section id="Contact  ME">
+    <h2>Contact Me</h2>
+    <div class="project">
+      <p>email-ahmedjahanaara@gmail.com </p>
+      <p>ph_no-1234567890</p>
+    </div>
+  </section>
+  <section id="contact">
+    <h1>Reach me by the following protocal</h1>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  <script 
+const navLinks = document.querySelectorAll('nav ul li a');
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => 
+ {
+    e.preventDefault();
+    const sectionId = link.getAttribute('href').slice(1);
+    const section = document.getElementById(sectionId);
+    window.scrollTo({
+      top: section.offsetTop,
+      behavior: 'smooth'
+    });
+  });
+});
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => 
+ {
+  e.preventDefault();
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  if (nameInput.value === '' || emailInput.value === '' || messageInput.value === '') 
+  {
+    alert('Please fill in all fields as it is neccessary.');
+    return;
+  }
+  });
+  </script>
+</body>
+</html>
