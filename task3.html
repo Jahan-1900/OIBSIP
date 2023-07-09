@@ -3,78 +3,128 @@
 <head>
   <title>Temperature Converter</title>
   <style>
-    input[type="number"] {
-      width: 100px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #8fc3e6;
+      padding: 20px;
     }
-    
-    #resultC {
-      color: blue;
+
+    h1 {
+      text-align: center;
     }
-    
-    #resultF {
-      color: red;
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #59c3f1;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(113, 35, 35, 0.1);
     }
-    
-    #resultK {
-      color: green;
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #5fc9ed;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      background-color: #e5e3e9;
+      color: #090000;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .celsius {
+      background-color: #14ad54;
+      color: #fff;
+    }
+
+    .fahrenheit {
+      background-color: #2f24a4;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <h2>Temperature Converter</h2>
-  
-  <label for="temperature">Temperature:</label>
-  <input type="number" id="temperature" step="any" oninput="convertTemperature()" />
-  <br>
-  
-  <input type="radio" id="celsius" name="unit" value="C" checked>
-  <label for="celsius">Celsius</label>
-  
-  <input type="radio" id="fahrenheit" name="unit" value="F">
-  <label for="fahrenheit">Fahrenheit</label>
-  
-  <input type="radio" id="kelvin" name="unit" value="K">
-  <label for="kelvin">Kelvin</label>
-  
-  <h3>Converted Temperatures:</h3>
-  <p id="resultC"></p>
-  <p id="resultF"></p>
-  <p id="resultK"></p>
-  
+  <h1>Temperature Converter</h1>
+  <div class="container">
+    <div class="input-group">
+      <label for="temperature">Temperature:</label>
+      <input type="number" id="temperature" placeholder="Enter temperature" required>
+    </div>
+    <div class="input-group">
+      <label for="unit">Unit:</label>
+      <select id="unit" onchange="updateTemperatureUnit()">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+      </select>
+    </div>
+    <button class="btn" onclick="convertTemperature()">Convert</button>
+    <div class="input-group">
+      <label for="output">Converted Temperature:</label>
+      <input type="text" id="output" readonly>
+    </div>
+  </div>
+
   <script>
     function convertTemperature() {
-      var temperatureInput = document.getElementById("temperature");
-      var celsiusRadio = document.getElementById("celsius");
-      var fahrenheitRadio = document.getElementById("fahrenheit");
-      var kelvinRadio = document.getElementById("kelvin");
-      
-      var temperature = parseFloat(temperatureInput.value);
-      
-      if (celsiusRadio.checked) {
-        document.getElementById("resultC").style.color = "blue";
-        document.getElementById("resultC").textContent = "Celsius: " + temperature;
-        document.getElementById("resultF").style.color = "red";
-        document.getElementById("resultF").textContent = "Fahrenheit: " + (temperature * 9/5 + 32);
-        document.getElementById("resultK").style.color = "green";
-        document.getElementById("resultK").textContent = "Kelvin: " + (temperature + 273.15);
-      } else if (fahrenheitRadio.checked) {
-        document.getElementById("resultC").style.color = "blue";
-        document.getElementById("resultC").textContent = "Celsius: " + ((temperature - 32) * 5/9);
-        document.getElementById("resultF").style.color = "red";
-        document.getElementById("resultF").textContent = "Fahrenheit: " + temperature;
-        document.getElementById("resultK").style.color = "green";
-        document.getElementById("resultK").textContent = "Kelvin: " + ((temperature - 32) * 5/9 + 273.15);
-      } else if (kelvinRadio.checked) {
-        document.getElementById("resultC").style.color = "blue";
-        document.getElementById("resultC").textContent = "Celsius: " + (temperature - 273.15);
-        document.getElementById("resultF").style.color = "red";
-        document.getElementById("resultF").textContent = "Fahrenheit: " + ((temperature - 273.15) * 9/5 + 32);
-        document.getElementById("resultK").style.color = "green";
-        document.getElementById("resultK").textContent = "Kelvin: " + temperature;
+      var temperature = parseFloat(document.getElementById("temperature").value);
+      var unit = document.getElementById("unit").value;
+      var outputElement = document.getElementById("output");
+
+      if (isNaN(temperature)) {
+        outputElement.value = "Please enter a valid temperature.";
+        return;
+      }
+
+      if (unit === "celsius") {
+        var convertedTemp = (temperature * 9/5) + 32;
+        outputElement.value = convertedTemp + "°F";
+        outputElement.classList.remove("fahrenheit");
+        outputElement.classList.add("celsius");
+      } else {
+        var convertedTemp = (temperature - 32) * 5/9;
+        outputElement.value = convertedTemp + "°C";
+        outputElement.classList.remove("celsius");
+        outputElement.classList.add("fahrenheit");
+      }
+    }
+
+    function updateTemperatureUnit() {
+      var unit = document.getElementById("unit").value;
+      var outputElement = document.getElementById("output");
+
+      if (unit === "celsius") {
+        outputElement.classList.remove("fahrenheit");
+        outputElement.classList.add("celsius");
+      } else {
+        outputElement.classList.remove("celsius");
+        outputElement.classList.add("fahrenheit");
       }
     }
   </script>
 </body>
 </html>
-
-
